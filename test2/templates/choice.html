@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}选择{% endblock %}
+{% block content %}
+    {% for message in get_flashed_messages() %}
+    <p>{{ message }}</p>
+    {% endfor %}
+    <a href="{{ url_for('uploads') }}">文件上传</a>
+    <a href="{{ url_for('downloads') }}">文件下载</a>
+{% endblock %}
+

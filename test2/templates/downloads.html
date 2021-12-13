@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}文件下载{% endblock %}
+{% block content %}
+{% if files %}
+    <h1>共找到{{ files|length }}条记录</h1>
+    <small><a href="{{ url_for('uploads') }}">跳转到文件上传</a></small>
+    <table>
+        <tr>
+            <th></th>
+            <th>文件</th>
+            <th>上传时间</th>
+        </tr>
+        {% for file in files %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td><a href="{{ url_for('download_file', name=file[0]) }}">{{ file[0] }}</a></td>
+            <td>{{ file[1].strftime("%Y-%m-%d %H:%M:%S") }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <small><a href="{{ url_for('uploads') }}">跳转到文件上传</a></small>
+{% endif %}
+{% endblock %}
